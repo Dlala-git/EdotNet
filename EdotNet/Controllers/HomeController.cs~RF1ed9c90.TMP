@@ -1,0 +1,39 @@
+﻿using Copie0Web.Models;
+using System.Net;
+using System.Web.Mvc;
+
+namespace Copie0Web.Controllers
+{
+    public class HomeController : Controller
+    {
+
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        [System.Obsolete]
+        public ActionResult Index()
+        {
+            //Utilisateur user = new Utilisateur();
+            string hostName = Dns.GetHostName();
+            Session["utilisateur"] = Dns.GetHostAddresses(hostName);
+
+            
+            return View();
+        } 
+
+            public ActionResult About()
+        {
+
+           
+            //ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+    }
+}

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EdotNet.Models;
+using Copie0Web.Models;
 
-namespace EdotNet.Controllers
+namespace Copie0Web.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -22,10 +19,11 @@ namespace EdotNet.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager , ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+         
         }
 
         public ApplicationSignInManager SignInManager
@@ -51,10 +49,18 @@ namespace EdotNet.Controllers
                 _userManager = value;
             }
         }
-
-        //
-        // GET: /Account/Login
-        [AllowAnonymous]
+        private ApplicationRoleManager roleManager;
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return this.roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set { this.roleManager = value; }
+        }
+      
+            // GET: /Account/Login
+            [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -70,16 +76,46 @@ namespace EdotNet.Controllers
         {
             if (!ModelState.IsValid)
             {
+
                 return View(model);
             }
 
+            ApplicationUser user = await UserManager.FindByEmailAsync(model.Email);
+        
             // Ceci ne comptabilise pas les échecs de connexion pour le verrouillage du compte
             // Pour que les échecs de mot de passe déclenchent le verrouillage du compte, utilisez shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    
+                    if (user != null)
+                    {
+                        foreach (var role in UserManager.GetRoles(user.Id))
+                        {
+                            if (role.Equals("Admin"))
+                            {
+                                return RedirectToAction("Index", "Home");
+                            }
+
+
+                            if (role.Equals("Stagiaire"))
+                            {
+                                return RedirectToAction("EspaceStagiaire", "Utilisateurs");
+                            }
+                            else if (role.Equals("Formateur"))
+                            {
+                                return RedirectToAction("EspaceFormateur", "Utilisateurs");
+                               
+                            }
+                        }
+                        return RedirectToAction("Index", "Home");
+                    }
+
+
+        
+
+                   return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -89,6 +125,7 @@ namespace EdotNet.Controllers
                     ModelState.AddModelError("", "Tentative de connexion non valide.");
                     return View(model);
             }
+           
         }
 
         //
@@ -136,12 +173,17 @@ namespace EdotNet.Controllers
 
         //
         // GET: /Account/Register
+        //[AllowAnonymous]
+        //public ActionResult Register()
+        //{
+        //    return View();
+        //}
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register( )
         {
             return View();
         }
-
+        private ApplicationDbContext db = new ApplicationDbContext();
         //
         // POST: /Account/Register
         [HttpPost]
@@ -149,22 +191,50 @@ namespace EdotNet.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+           
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var result = await UserManager.CreateAsync(user,model.Password);
+                   // model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
+
+                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+
+                    //// Ajout d'un role
+
+                    //var _role = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var _roleManager = new RoleManager<IdentityRole>(_role);
+
+                    //await _roleManager.CreateAsync(new IdentityRole("Formateur"));
+                    //await UserManager.AddToRoleAsync(user.Id, "Formateur");
+
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
                     // Envoyer un message électronique avec ce lien
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
 
-                    return RedirectToAction("Index", "Home");
-                }
+                    return RedirectToAction("Create", "Utilisateurs");
+                    }
+                    
+                
+
+                // Si nous sommes arrivés là, un échec s’est produit. Réafficher le formulaire
+           
+            
+
+            // Pour plus d'informations sur l'activation de la confirmation de compte et de la réinitialisation de mot de passe, visitez https://go.microsoft.com/fwlink/?LinkID=320771
+            // Envoyer un message électronique avec ce lien
+            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            // await UserManager.SendEmailAsync(user.Id, "Confirmez votre compte", "Confirmez votre compte en cliquant <a href=\"" + callbackUrl + "\">ici</a>");
+
+           
                 AddErrors(result);
             }
 

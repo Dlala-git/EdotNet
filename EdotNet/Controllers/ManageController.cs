@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using EdotNet.Models;
+using Copie0Web.Models;
 
-namespace EdotNet.Controllers
+namespace Copie0Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
