@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Copie0Web.Models.Cursus>
+
+@{
+    //ViewBag.Title = "ListeParcourSessions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+<p>
+    <center>
+        <h1> Les Parcours disponibles </h1>
+    </center>
+</p>
+<div class=" container">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+
+                <th scope="col"> Nom de Parcours</th>
+                <th scope="col">Parcours</th>
+                <th scope="col">Date Debut</th>
+                <th scope="col">Date Fin</th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titre)
+                </td>
+                <td>
+
+                    <h6>
+                        @Html.DisplayFor(modelItem => item.Titre)
+                    </h6>
+                    <span>
+                        <img src="@Url.Content(@item.Image)" alt="@item.Titre" class="img-fluid" width="60px" />
+                    </span>
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.DateDebut)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateFin)</td>
+
+                <td>
+                    <button type="button" class="btn btn-info">
+
+                        @Html.ActionLink("Modules", "ListeModulesParcoursSessions", new { id = item.Id })
+                    </button>
+                    <button type="button" class="btn btn-info">
+                        @Html.ActionLink("Choisir", "AjoutCursus", new { id = item.Id })
+                    </button>
+
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    <hr />
+    <button type="button" class="btn btn-info">
+        @Html.ActionLink("Session", "ListeSessions")
+    </button>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

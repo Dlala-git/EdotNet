@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Copie0Web.Models.Utilisateur>
+
+@{
+    //ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des Candidats</h2>
+
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nationalité)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NiveauEtude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatutActuel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diplome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Catégorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComplementAdresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelephoneMobile)
+        </th>
+   
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LieuNaissance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nationalité)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NiveauEtude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatutActuel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diplome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Catégorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComplementAdresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodePostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelephoneMobile)
+        </td>
+     
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

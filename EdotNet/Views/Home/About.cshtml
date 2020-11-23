@@ -1,7 +1,56 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@*@model Copie0Web.Models.Commentaires
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+    <script src="//js.pusher.com/4.0/pusher.min.js"></script>
+    <style>
+        .user_name {
+            font-size: 14px;
+            font-weight: bold;
+        }
 
-<p>Use this area to provide additional information.</p>
+        .comments-list .media {
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+
+                    
+        @{
+            var nbreCommentaire = 0;
+            if (Session["commentaire"] != null)
+            {
+                //IEnumerable<Copie0Web.Models.Commentaires> list;
+
+                IList<Copie0Web.Models.Commentaires> list = new List<Copie0Web.Models.Commentaires>();
+                list = (List<Copie0Web.Models.Commentaires>)Session["commentaire"];
+                nbreCommentaire = (Session["commentaire"] as List<Copie0Web.Models.Commentaires>).Count();
+
+            }
+        }
+           <h1><small class="pull-right">{{@nbreCommentaire}} comments</small> Comments </h1>
+        </div>
+        <div class="comments-list">
+         <div class="media" v-for="com in commentaires">
+         <div class="media-body">
+            <h4 class="media-heading user_name">@Model.Nom</h4>
+          @Model.Comments
+          </div>
+         </div>
+         </div>
+        </div>
+     </div>
+   </div>
+<div class="container">
+    <br />
+    <p>Votre Avis </p>
+    <form onsubmit="return false;">
+        <input type="text" id="Name" placeholder="Your Name" v-model="commentaires.Nom" class="form-control" />
+        <textarea rows="3" placeholder="Your Comment" id="Body" v-model="comment.Comments" class="form-control"></textarea><br />
+        <button class="btn btn-success"   type="submit">Commenter</button>
+    </form>
+</div>
+
+<p>*@

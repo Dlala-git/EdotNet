@@ -1,40 +1,88 @@
-﻿@model EdotNet.Models.RegisterViewModel
+﻿@model Copie0Web.Models.RegisterViewModel
 @{
-    ViewBag.Title = "S'inscrire";
+//ViewBag.Title = "S'inscrire";
 }
 
-<h2>@ViewBag.Title.</h2>
+<br />
+<br />
+<center>
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Créez un nouveau compte.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                <h4><strong> Nouvelle Inscription</strong></h4>
+                    <div class="col-md-8 mx-auto">
+                        <div class="caption-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                       
+                                        <img src="~/images/logos/inscription.jpeg" width="150px"/>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+
+                                        <h3>Nouveau Membre</h3>
+                                        <hr>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>Adresse Email</label>
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mot de passe</label>
+
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Confirmer Mot de passe</label>
+
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+                                        </div>
+                                        <hr />
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" class="btn btn-info" value="S'inscrire" />
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                                <hr />
+                                <a href="Home/index">Back to Home</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+            </section>
         </div>
+       
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="S'inscrire" />
-        </div>
-    </div>
-}
+
+</center>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

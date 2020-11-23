@@ -1,0 +1,82 @@
+﻿@model Copie0Web.Models.Module
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Module</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCursus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCursus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>*@
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreHeures)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreHeures)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateDebut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomFormateur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomFormateur)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogoModule)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LogoModule)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

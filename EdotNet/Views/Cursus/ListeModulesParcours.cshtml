@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Copie0Web.Models.Module>
+
+@{
+    //ViewBag.Title = "ListeModulesParcours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <center>
+        <h1> Les Modules du parcours </h1>
+    </center>
+</p>
+<div>
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+
+            {
+
+
+                <div class="col-md-4">
+                    <div class="card border-primary mb-3" style="width: 18rem;">
+                        <img src="@Url.Content(@item.LogoModule)" class="img-fluid" width="150px" alt="@Html.DisplayFor(modelItem => item.LogoModule)" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nom</h5>
+                            <button type="button" id="@item.Id"
+                                    class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content=" Module:@item.Nom ; Nom de Formateur:@item.NomFormateur ; Nombre d'heures :@item.NombreHeures">
+                                Details
+                                <script>
+                            $('#@item.Id').popover({
+                            trigger: 'focus'
+                            });
+                                </script>
+
+                            </button>
+
+                            @*<a href="~/Sessions/AjoutModule/@item.Id" class="btn btn-info">Choisir</a>*@
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+
+            }
+
+        </div>
+        <hr />
+    </div>
+</div>
+
+

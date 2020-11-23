@@ -1,45 +1,159 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mon application ASP.NET</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous">
+
+    </script>
+    <title>@ViewBag.Title  E-DOTNET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
 
+    <style>
+        .box-pub-content {
+            border: solid 4px darkorchid;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        #box-pub-candidature {
+            position: fixed;
+            min-width: 260px;
+            min-height: 230px;
+            left: 0;
+            bottom: 0;
+            z-index: 99999;
+            padding: 5px;
+            background: darkorchid;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nom d'application", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+    <div class="header">
+        <div class="navbar navbar-light navbar-fixed-top " style="background-color: #b7dbef;
+        color:black;">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <img src="~/images/logos/logosite.jpeg" width="50px" />
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav " style="color:black ;">
+                        <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Sessions", "ListeSessions", "Sessions")</li>
+                        <li>
+                            @Html.ActionLink("Espace Formateur", "Login", "Account")
+                        </li>
+                        <li>@Html.ActionLink("Espace stagiaire", "Login", "Account")</li>
+                        <li> @Html.ActionLink("Temoignages&Avis", "Create", "Commentaires")</li>
+                        <li>@Html.ActionLink("Contact&Acces", "Contact", "Home")</li>
+                    </ul>
+
+
+                    <ul class="nav navbar-nav ml-auto">
+                        @{
+                            var NombreCursus = 0;
+                            if (Session["cursus"] != null)
+                            {
+                                NombreCursus = (Session["cursus"] as List<Copie0Web.Models.Cursus>).Count();
+                            }
+                            //if (Session["module"] != null)
+                            //{
+                            //    NombreProduits = (Session["module"] as List<Copie0Web.Models.Module>).Count();
+                            //}
+                        }
+                        <li class="nav-item">
+                            <h3>
+                                <a href="" class="nav-link">
+                                    <i class="glyphicon glyphicon-shopping-cart">@NombreCursus</i>
+
+                                </a>
+                            </h3>
+                        </li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div>
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mon application ASP.NET</p>
-        </footer>
     </div>
+    <section>
+       <div class="footer">
+
+    <div class=" col-md-12 ">
+        <div class="copyright">
+            <center>
+                <a title="E-DotNet" target="_blank" href="#/">E-DotNet</a> |
+                Designed by: <a title="Balique Sonia" target="_blank" href="#">Balique Sonia</a> <span>
+                    © 2020
+                </span>
+            </center>
+
+        </div>
+    </div>
+    </div>
+</section>
+</body>
+
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-</body>
+
+
 </html>
+
+<script>
+
+    $(document).ready(function () {
+        $('#btn').click(function () {
+            $('#box-pub-candidature').hide();
+
+        });
+
+
+    });
+
+</script>
+<div class="box-pub-content" id="box-pub-candidature">
+    <button type="button" id="btn" class="close-box-pub" aria-label="Close" data-trigger="focus">
+        <span aria-hidden="true" style="color:black;">×</span>
+    </button>
+    <div class="box-pub-content">
+        <p>
+            <span style="font-size:16px">
+                <span style="color:#FFFFFF">
+                    <strong>Sessions</strong><br>
+                    <strong>OUVERTES</strong>
+                </span>
+            </span><br>
+            <span style="color:#FFFFFF">Les admissions pour la rentrée</span><br>
+            <span style="color:#FFFFFF">
+                de<strong> SEPTEMBRE</strong><br>
+                <span style="font-size:16px"><strong>2020</strong></span><br>
+                SONT OUVERTES* !
+            </span>
+        </p>
+
+        <a href="/Cursus/ListeParcours" class="btn box-pub-btn" style="color:#FFFFFF" target="_blank">CANDIDATURE <span class="glyphicon glyphicon-play"></span></a><br>
+        <span>* places limitées</span><br>
+    </div>
+</div>
+
+

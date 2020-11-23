@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Copie0Web.Models.Module>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous">
+</script>
+
+
+<!-- Bootstrap CSS -->
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">*@
+
+<!-- Optional JavaScript -->
+<!-- Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+@{
+    ViewBag.Title = "ListeModules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p>
+    <center>
+        <h1> Les Modules Disponibles </h1>
+    </center>
+</p>
+
+<div>
+    <div class="container">
+        <div class="row">
+
+            @foreach (var item in Model)
+
+            {
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@Url.Content(@item.LogoModule)" alt="@item.Nom" width="100px" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Nom</h5>
+                            <p class="card-text">
+                                <center>
+                                    @item.DateDebut.ToShortDateString() -- @item.DateFin.ToShortDateString() <hr />
+
+                                </center>
+                            </p>
+
+                            @*<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>*@
+                            @*<button class="btn btn-info">
+                                @Html.ActionLink("Chapitres", "Details", new { id = item.Id })*@
+                        @*<button type="button" id="@item.Id"
+                                class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="@item.Nom  @item.NomFormateur  @item.NombreHeures">
+                            Details*@
+                        <script>
+                                @*$('.@item.Id').popover({
+                            trigger: 'focus'
+                            });*@
+                                $('#@item.Id').popover({
+                                    trigger: 'focus'
+                                })
+                        </script>
+                            <a   tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Details" data-content="@item.Nom @item.NomFormateur  @item.NombreHeures">Details</a>
+
+                        @*</button>*@
+
+
+                        </div>
+                    </div>
+                </div>
+
+            }
+            <br />
+        </div>
+        <hr />
+    </div>
+</div>
+
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

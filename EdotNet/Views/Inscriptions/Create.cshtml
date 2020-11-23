@@ -1,0 +1,131 @@
+﻿@*@model Copie0Web.Models.Inscription
+
+    @{
+        ViewBag.Title = "Create";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Inscription</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateInscription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateInscription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateInscription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+@model Copie0Web.Models.Inscription
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="row my-3">
+    <div class="col-12">
+        <h4>Candidature Le: @Model.DateInscription</h4>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-6 text-left">
+        <p>
+            @Model.Utilisateur.Nom <span>@Model.Utilisateur.Prenom</span>
+        </p>
+        <p>
+            @Model.Utilisateur.Adresse
+        </p>
+        <p>
+            @Model.Utilisateur.CodePostal <span>@Model.Utilisateur.Ville</span>
+        </p>
+        <p>
+            @Model.Utilisateur.TelephoneMobile
+        </p>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <tr>
+                <th>
+                    Modules
+                </th>
+                <th>
+                    Date de Debut
+                </th>
+                <th>
+                    Date de Fin
+                </th>
+                <th>
+                    Nom de formateur
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Statut de candidature
+                </th>
+            </tr>
+
+            @foreach (var item in @Model.Modules)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateDebut)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateFin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomFormateur)
+                    </td>
+                    <td>
+                        <span><img src="@Url.Content(@item.LogoModule)" class="img-fluid" width="150px" /></span>
+
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+
+
+
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Retour", "Index")
+</p>

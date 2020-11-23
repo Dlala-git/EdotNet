@@ -1,31 +1,189 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿
+    <body>
+        <style>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+            .carousel {
+                height: auto;
+                Width: auto;
+            }
+            .carousel-inner img {
+                 height:100%;
+                Width: 100%;
+            }
+/**/
+         
+        </style>
+        <section>
+            <center>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                       
+                            <div id="mycarousel" class="carousel slide carousel-fullscreen " data-ride="carousel" data-interval="2000">
+
+                                <ol class="carousel-indicators">
+                                    <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#mycarousel" data-slide-to="1"></li>
+                                    <li data-target="#mycarousel" data-slide-to="2"></li>
+                                    <li data-target="#mycarousel" data-slide-to="3"></li>
+
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+
+                                    <div class="carousel-caption">
+                                        <div style="margin: 50px auto; text-align: center;">
+                                            <a class="marge-top-10 savoir-plusbtn btn" style="color: white; background-color: blueviolet;" href="~/Sessions/ListeSessions" rel="noopener noreferrer" target="_blank">Session Septembre</a><br><br>
+                                            <a class="marge-top-10 savoir-plusbtn btn" style="color: white; background-color: blueviolet;" href="~/Cursus/ListeParcours" rel="noopener noreferrer" target="_blank">Cursus Professionnels</a>
+                                        </div>
+                                        <div class="slide-title">Les Formatios Professionnelles</div>
+                                        <div class="slide-desc"></div>
+                                        <a class="savoir-plusbtn" href="/Sessions/ListeSessions">
+
+                                            Je m'inscris en formation professionnelle
+                                        </a>
+                                    </div>
+
+                                    <div class="item active">
+                                        <img   src="~/images/cursus/csharp.png" alt="slide" />
+                                    </div>
+                                    <div class="item">
+                                        <img   src="~/images/cursus/aspNet.png" alt="slide" />
+                                    </div>
+
+                                    <div class="item ">
+                                        <img   src="~/images/logos/concepteur.png" alt="slide" />
+                                    </div>
+                                    <div class="item ">
+                                        <img  src="~/images/logos/administrateur.png" alt="slide" />
+                                    </div>
+                                    <a href="#mycarousel" class="left carousel-control" data-slide="prev">
+                                        <span class="icon-prev"></span>
+                                    </a>
+                                    <a href="#mycarousel" class="right carousel-control" data-slide="next">
+                                        <span class="icon-next"></span>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </center>
+        </section>
+        <hr />
+        <hr />
+        <section>
+            <div class="col-md-4">
+                <div class="card" style="width: 150px;">
+                    <img class="card-img-top" src="~/images/logos/developpeurcsharp.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                         <center><p class="card-text">
+                                     <a href="~/Cursus/ListeParcours/">
+                                         Parcours d'un développeur CSHARP DOTNET <br />
+                                         Session Septembre 2020<br />
+                                        </a>
+                                 </p>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width: 150px;">
+                    <img class="card-img-top" src="~/images/logos/concpteurdevelopeur.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <center>
+                            <p class="card-text">
+                              <a href="~/Cursus/ListeParcours/">
+                                  Parcours Concepteur Développeur d'application Informatiques.<br />
+                                   Session Septembre 2020 <br />
+                              </a>
+                             </p>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" style="width:150px;">
+                    <img class="card-img-top" src="~/images/logos/adminbdd.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <center>
+                            <p class="card-text"> 
+                                <a href="~/Cursus/ListeParcours/">
+                                    Parcours Administateur Base de Données.
+                                    <br /> Session Septembre 2020 <br />
+                                </a> 
+                            
+                             </p>
+                        </center>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+      
+            <section >
+                <div class=" col-md-12 ">
+                    <div>
+                        <div class="col-md-6" style="background: url('../../images/logos/img1.jpeg') ; background-size: cover; padding: 0; min-height: 429px;">
+                            <div class="col-md-12" style="background: rgba(68,68,68,0.38);height: 429px;">
+                                <div style="color: #ffffff;text-align: center;font-weight: bold;font-size: 2.1em;padding-bottom: 20px;margin-top: 45px;line-height: 39px;border-bottom: 1px dashed #ffffff;">FORMATIONS ÉTUDIANTES</div>
+                                <div style="color: #ffffff;font-size: 1.2em;font-weight: 600;margin-top: 14px;text-align: center;padding-bottom: 10px;border-bottom: 1px dashed #ffffff;">Décrochez un diplôme reconnu par l'État<br>de niveau Bac à Bac +3/4</div>
+                                <div style="margin: 50px auto; text-align: center;">
+                                    <a class="marge-top-10 savoir-plusbtn btn" href="~/Cursus/ListeParcours/" rel="noopener noreferrer" target="_blank">FORMATION INITIALE</a><br><br>
+                                    <a class="marge-top-10 savoir-plusbtn btn" href="~/Cursus/ListeParcours/" rel="noopener noreferrer" target="_blank">FORMATION EN ALTERNANCE</a>
+                                </div>
+                            </div>
+                        </div><div class="col-md-6" style="background-image: url('../../images/logos/images (1).jpeg');
+                      background-size: cover; padding: 0; min-height: 425px;"><div class="col-md-12 pull-right" style="background: rgba(68,68,68,0.38);height: 429px;"><div style="color: #fff;text-align: center;font-weight: bold;font-size: 2.1em;padding-bottom: 20px;margin-top: 45px;line-height: 39px;border-bottom: 1px dashed #fff;">FORMATIONS PROFESSIONNELLES</div><div style="color: #fff;font-size: 1.2em;font-weight: 600;margin-top: 14px;text-align: center;padding-bottom: 10px;border-bottom: 1px dashed #fff;">+ de 300 formations et parcours<br>&nbsp;INTER, INTRA ET SUR-MESURE</div><div style="margin: 50px auto; text-align: center;"><a class="marge-top-10 savoir-plusbtn btn" href="~/Cursus/ListeParcours/" rel="noopener noreferrer" target="_blank">FORMATION CONTINUE</a><br><br><a class="marge-top-10 savoir-plusbtn btn" href="~/Cursus/ListeParcours/" rel="noopener noreferrer" target="_blank">FORMATION CONVENTIONNÉE</a></div></div></div>
+                    </div><p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">@*<a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a>*@</p><p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;"><br></p>
+                    <p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;"> @*<a href="https://www.froala.com/wysiwyg-editor?pb=1" title=""></a>*@</p>
+
+                </div>
+            </section>
+
+            <section>
+
+                <div class=" col-md-12 ">
+                    <center><h1><strong>Les actualités</strong></h1></center>
+                    <br />
+       
+                    <center>
+                   
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/D6fZavmSOe8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               
+                    </center>
+                </div>
+</section>
+
+        <hr />
+        <br />
+        <section>
+            <div class=" col-md-12 ">
+                <center><h1><strong>Cantact & Acces</strong></h1></center>
+                <br />
+                <center>
+                    <div class=" col-md-12 ">
+                        <h3 class="page-header list-titre" style="color: blue;text-align: center;">ACCÈS AU SITE VADEL CONSULTING</h3>
+                        <div class="col-md-12 text-center">
+                            <h2 class="map-title">VADEL CONSULTING Paris</h2>
+                            <p class="no-margin">250 ,Avenue Philippe Bur </p>
+                            <p class="no-margin"> 77550 Moissy Cramayel<br><br></p>
+                            <p>
+                                <center>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2637.070757553656!2d2.587448815007598!3d48.62762802488205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5e3797fa944bd%3A0x39a03e689df5c743!2sVADEL%20Consulting!5e0!3m2!1sfr!2sfr!4v1599157029085!5m2!1sfr!2sfr" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                                </center>
+                            </p>
+                        </div>
+                    </div>
+
+                </center>
+            </div>
+
+        </section>
+</body>
+    

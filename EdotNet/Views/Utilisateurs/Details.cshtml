@@ -1,0 +1,143 @@
+﻿@model Copie0Web.Models.Utilisateur
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Utilisateur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LieuNaissance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LieuNaissance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nationalité)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nationalité)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NiveauEtude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NiveauEtude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatutActuel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatutActuel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diplome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diplome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Catégorie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Catégorie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComplementAdresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComplementAdresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelephoneMobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelephoneMobile)
+        </dd>
+
+     
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

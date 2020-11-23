@@ -1,0 +1,99 @@
+﻿@model Copie0Web.Models.Commentaires
+@{
+    //ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+        <div class="container">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nom, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nom)
+                    @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*<input textarea rows="3" placeholder="Your Comment" class="form-control" /><br />*@
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "form-control" })
+                    @*@Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Commenter" class="btn btn-primary" />
+                </div>
+            </div>
+            <img src="~/images/logos/temoigne.jpeg" with="auto" />
+        </div>
+
+    
+    <style>
+        .user_name {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .comments-list .media {
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="page-header">
+
+                    @{
+                        var nbreCommentaire = 0;
+                        if (Session["commentaire"] != null)
+                        {
+
+                            IList<Copie0Web.Models.Commentaires> list = new List<Copie0Web.Models.Commentaires>();
+                            list = (List<Copie0Web.Models.Commentaires>)Session["commentaire"];
+                            nbreCommentaire = (Session["commentaire"] as List<Copie0Web.Models.Commentaires>).Count();
+
+                            <h1><small class="pull-right">@nbreCommentaire  Témoignages</small></h1>
+                            for (int i = 0; i < nbreCommentaire; i++)
+                            {
+                                <div class="comments-list">
+                                    <div class="media" v-for="com in Model">
+                                        <div class="media-body">
+                                            <h4 class="media-heading user_name">@list[i].Nom</h4><br />
+                                            @list[i].Comments
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <br />
+ </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

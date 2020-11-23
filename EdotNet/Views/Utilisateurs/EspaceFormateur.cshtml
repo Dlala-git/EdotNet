@@ -1,0 +1,117 @@
+﻿
+@{
+    //ViewBag.Title = "Alex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div >
+    <center><img src="~/images/logos/formateur2.jpeg" width="250px" /> </center>
+        
+ </div>
+<div class="  container">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 text-left">
+
+                @{
+                    Copie0Web.Models.Utilisateur utilisateur = new Copie0Web.Models.Utilisateur();
+
+                    if (Session["formateur"] != null)
+                    {
+                        utilisateur = (Session["formateur"] as Copie0Web.Models.Utilisateur);
+                    }
+                }
+                <p>
+                    <span>@utilisateur.Nom</span>
+                </p>
+                <p>
+                    <span>@utilisateur.Prenom</span>
+                </p>
+                <p>
+                    @utilisateur.Adresse
+                </p>
+                <p>
+                    @utilisateur.CodePostal <span>@utilisateur.Ville</span>
+                </p>
+                <p>
+                    @utilisateur.TelephoneMobile
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <center><h1>Listes des Modules</h1></center>
+                <br />
+                @{
+                    var NombreModules = 0;
+                    if (Session["module"] != null)
+                    {
+                        NombreModules = (Session["module"] as List<Copie0Web.Models.Module>).Count();
+                        IList<Copie0Web.Models.Module> list = new List<Copie0Web.Models.Module>();
+                        list = (List<Copie0Web.Models.Module>)Session["module"];
+                        for (int i = 0; i < NombreModules; i++)
+                        {
+                            <div class="col-md-4">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="@Url.Content(@list[i].LogoModule)" alt="@list[i].Nom" width="100px" class="card-img-top" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">@list[i].Nom</h5>
+                                        <p class="card-text">
+                                            <center>
+                                                @list[i].DateDebut.ToShortDateString() <br /> @list[i].DateFin.ToShortDateString()
+                                            </center>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    @model List<string>
+
+    @using (Html.BeginForm("EspaceFormateur",
+                            "Utilisateurs",
+                            FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+    {
+
+
+
+        <input type="file" name="file" id="file" />
+        <br>
+        <input type="submit" value="Télecharger " class="btn btn-primary" />
+        <br>
+        <br>
+        <p>
+            <img src="~/images/logos/telecharger.jpeg" width="150px" />
+        </p>
+
+        <table>
+
+            @for (var i = 0; i <= Model.Count() - 1; i++)
+            {
+                <tr>
+                    <td>@Model[i].ToString() </td>
+                    <td></td>
+                    <td>@Html.ActionLink("Télécharger", "Download", new { DocName = Model[i].ToString() }) </td>
+                </tr>
+            }
+        </table>
+    }
+</div>
+<br />
+<br />

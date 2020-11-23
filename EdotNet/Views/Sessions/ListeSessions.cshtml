@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Copie0Web.Models.Session>
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <p>
+        <center>
+            <h1> Les Sessions Disponibles </h1>
+        </center>
+    </p>
+    <div class=" container">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"> Date Debut</th>
+                    <th scope="col">Date Fin</th>
+
+                </tr>
+
+            </thead>
+
+
+            @foreach (var item in Model)
+            {
+                <tr class="table-success">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateDebut)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateFin)
+
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-info">
+
+                            @Html.ActionLink("Parcours", "ListeParcourSessions", new { id = item.Id })
+                        </button>
+
+                        <span class="badge badge-secondary">New</span>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+<br />
+<br />   

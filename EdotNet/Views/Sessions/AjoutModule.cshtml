@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Copie0Web.Models.Module>
+
+@{
+    //ViewBag.Title = "AjoutModule";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Choix des Modules</h2>
+
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreHeures)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateDebut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.LogoModule)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomFormateur)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreHeures)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateDebut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFin)
+            </td>
+            <td>
+
+                <h6>
+                    @Html.DisplayFor(modelItem => item.Nom)
+                </h6>
+                <span>
+                    <img src="@Url.Content(@item.LogoModule)" alt="@item.Nom" class="img-fluid" width="60px" />
+                </span>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomFormateur)
+            </td>
+            <td>
+                <button type="button" class="btn btn-info">
+
+                    @Html.ActionLink("Supprimer", "SupprimerModule", new { id = item.Id })
+                </button>
+             
+                <a href="~/Sessions/ListeSessions/" class="btn btn-info">Retour</a>
+            </td>
+        </tr>
+
+    }
+
+</table>
+<hr />
+<a href="~/Account/Register/" class="btn btn-info">
+    Postuler
+</a>
+@*@if (Request.IsAuthenticated)
+{
+    <a href="~/Utilisateurs/Candidature/" class="btn btn-info">
+
+        Postuler  à nouveau
+    </a>
+}*@ 

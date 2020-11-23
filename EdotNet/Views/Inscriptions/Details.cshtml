@@ -1,0 +1,159 @@
+﻿@model Copie0Web.Models.Inscription
+
+@{
+    //ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <center><h1><strong>Espace Stagiare </strong></h1></center>
+    <div class="container">
+        <div class="row my-3">
+            <div class="col-12">
+                <img src="~/images/logos/logo1.png" width="150px" />
+                <h4>Candidature Le: @Model.DateInscription</h4>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-6 text-left">
+                <p>
+                    @Model.Utilisateur.Nom <span>@Model.Utilisateur.Prenom</span>
+                </p>
+                <p>
+                    @Model.Utilisateur.Adresse
+                </p>
+                <p>
+                    @Model.Utilisateur.CodePostal <span>@Model.Utilisateur.Ville</span>
+                </p>
+                <p>
+                    @Model.Utilisateur.TelephoneMobile
+                </p>
+            </div>
+
+        </div>
+        <br />
+        @if (@Model.Parcours != null)
+        {
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                Cursus
+                            </th>
+                            <th>
+                                Date de Debut
+                            </th>
+                            <th>
+                                Date de Fin
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+                                Statut de candidature
+                            </th>
+                        </tr>
+
+                        @foreach (var item in @Model.Parcours)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Titre)
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDebut)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateFin)
+                                </td>
+                                <td>
+                                    <span><img src="@Url.Content(@item.Image)" class="img-fluid" width="150px" /></span>
+
+                                </td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+
+
+                </div>
+            </div>
+
+        }
+    </div>
+@*@if (Model.Modules != null)
+{
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <tr>
+                    <th>
+                        Modules
+                    </th>
+                    <th>
+                        Date de Debut
+                    </th>
+                    <th>
+                        Date de Fin
+                    </th>
+                    <th>
+                        Nom de formateur
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+                        Statut de candidature
+                    </th>
+                </tr>
+
+                @foreach (var item in @Model.Modules)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nom)
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateDebut)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateFin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomFormateur)
+                        </td>
+                        <td>
+                            <span><img src="@Url.Content(@item.LogoModule)" class="img-fluid" width="150px" /></span>
+
+                        </td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>*@
+        @*</div>
+    </div>
+}*@
+
+<hr />
+@if (Request.IsAuthenticated)
+{
+    <a href="~/Sessions/ListeSessions/" class="btn btn-info">
+        Postuler à Nouveau
+    </a>
+}

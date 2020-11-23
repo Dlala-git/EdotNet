@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Copie0Web.Models.Cursus>
+
+@{
+    ViewBag.Title = "ListeParcours";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    <center>
+        <h1> Les Parcours disponibles </h1>
+    </center>
+</p>
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            @*<th scope="col">Session</th>*@
+            <th scope="col"> Nom de Parcours</th>
+            <th scope="col">Parcours</th>
+
+
+
+        </tr>
+
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Titre)
+            </td>
+            <td>
+
+                <h6>
+                    @Html.DisplayFor(modelItem => item.Titre)
+                </h6>
+                <span>
+
+                    <img src="@Url.Content(@item.Image)" class="img-fluid" width="150px" title=" @Html.DisplayFor(modelItem => item.Titre)" />
+                </span>
+            </td>
+            <td>
+
+            <td>
+
+                <button type="button" class="btn btn-info">
+
+                    @Html.ActionLink("Modules", "ListeModulesParcours", new { id = item.Id })
+                </button>
+             
+                    <a href="~/Sessions/AjoutCursus/@item.Id" class="btn btn-info">Choisir</a>
+            </td>
+
+        </tr>
+    }
+
+</table>
+<hr />
+<button type="button" class="btn btn-info">
+    @Html.ActionLink("Session", "ListeSessions")
+</button>

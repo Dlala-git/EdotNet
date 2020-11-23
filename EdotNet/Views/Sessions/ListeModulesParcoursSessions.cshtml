@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Copie0Web.Models.Module>
+
+@{
+    //ViewBag.Title = "Liste des Modules";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>
+    <center>
+        <h1> Les Modules Disponibles </h1>
+    </center>
+</p>
+
+
+<div class="container">
+    <div class="row">
+
+        @foreach (var item in Model)
+
+        {
+            <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="@Url.Content(@item.LogoModule)" alt="@item.Nom" class="img-fluid" width="100px" class="card-img-top" style="border:double;border-color:black;" />
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Nom</h5>
+                        <p class="card-text">
+                            <center>
+                                @item.DateDebut.ToShortDateString() -- @item.DateFin.ToShortDateString() <br />
+                                @item.NomFormateur
+                            </center>
+                        </p>
+                        <button type="button" id="@item.Id"
+                                class="btn btn-info" data-container="body" data-toggle="popover" data-placement="bottom" data-content=" Module:@item.Nom ; Nom de Formateur:@item.NomFormateur ; Nombre d'heures :@item.NombreHeures">
+                            Details
+                            <script>
+                            $('#@item.Id').popover({
+                            trigger: 'focus'
+                            });
+                            </script>
+
+                        </button>
+
+                        @*<button class="btn btn-info">
+                                @Html.ActionLink("Choisir", "AjoutModule", new { id = item.Id })
+                            </button>*@
+                    </div>
+
+                </div>
+            </div>
+            <br />
+
+            @*<a href="/Sessions/AjoutCursus/@item.IdCursus" class="btn btn-info">Retour</a>*@
+        }
+
+    </div>
+
+</div>
+
+<hr />
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/bootstrap")
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

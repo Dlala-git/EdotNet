@@ -1,0 +1,115 @@
+﻿@{
+
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <p> <img src="~/images/logos/logo1.png" width="150px" /></p>
+    <center><h1><strong>Espace Stagiare </strong></h1></center>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 text-left">
+                @{
+                    Copie0Web.Models.Utilisateur utilisateur = new Copie0Web.Models.Utilisateur();
+
+                    if (Session["Stagiaire"] != null)
+                    {
+                        utilisateur = (Session["Stagiaire"] as Copie0Web.Models.Utilisateur);
+                    }
+                }
+
+                <p>
+                    @utilisateur.Nom <span>@utilisateur.Prenom</span>
+                </p>
+                <p>
+                    @utilisateur.Adresse
+                </p>
+                <p>
+                    @utilisateur.CodePostal <span>@utilisateur.Ville</span>
+                </p>
+                <p>
+                    @utilisateur.TelephoneMobile
+                </p>
+            </div>
+
+        </div>
+
+        @{
+            if (Session["inscription"] != null)
+            {
+                IList<Copie0Web.Models.Inscription> list = (List<Copie0Web.Models.Inscription>)Session["inscription"];
+                for (int i = 0; i < list.Count() ; i++)
+                {
+
+
+                    <div class="row my-3">
+                        <div class="col-12">
+
+                            <h4>Candidature Le: @list[i].DateInscription</h4>
+                        </div>
+                    </div>
+                    <hr />
+
+
+                    <br />
+                    if (@list[i].Parcours != null)
+                    {
+
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            Cursus
+                                        </th>
+                                        <th>
+                                            Date de Debut
+                                        </th>
+                                        <th>
+                                            Date de Fin
+                                        </th>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            Statut de candidature
+                                        </th>
+                                    </tr>
+
+                                    @foreach (var item in @list[i].Parcours)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Titre)
+
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateDebut)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateFin)
+                                            </td>
+                                            <td>
+                                                <span><img src="@Url.Content(@item.Image)" class="img-fluid" width="150px" /></span>
+
+                                            </td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </table>
+
+
+
+                            </div>
+                        </div>
+
+                    }
+                }
+            }
+        }
+
+    </div>
